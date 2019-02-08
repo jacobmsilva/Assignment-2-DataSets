@@ -20,12 +20,18 @@ numerical = False
 
 # Loops through the first row to determine what kind of data we are looking at
 for i in range(len(DS1.values[1])):
+    # If the data is categorical
     if isinstance(DS1.values[1][i], str):
-        print('Column', i, 'is categorical')
-        categorical = True
+        print('Column', i, 'is categorical')    
+        categorical = True                      # There is categorical data, sets Boolean to True
+        DS1_Sliced = DS1.iloc[:, i:i + 1]       # Slices the data into a 1 wide column containing all of the rows
+        print('Column', i, 'mean is:', DS1_Sliced.mode())
+    # Else the data is numerical
     else:
         print('Column', i, 'is numerical')
-        numerical = True
+        numerical = True                        # There is numerical data, sets the Boolean to True
+        DS1_Sliced = DS1.iloc[:, i:i + 1]       # Slices the data into a 1 wide column containing all of the rows
+        print('Column', i, 'mean is:', DS1_Sliced.mean())
 
 # If statements to check if the values are numerical, categorical or both
 if categorical and not numerical:
@@ -35,15 +41,4 @@ if not categorical and numerical:
 if categorical and numerical:
     print("The data is both numerical and categorical")
 
-# Finds the mean for each column
-# TODO: if categorical: do not find mean, find mode!
-for i in range(len(DS1.columns)):
-    DS1_Sliced = DS1.iloc[:,i:i+1]
-    print('Column', i, 'mean is:', DS1_Sliced.mean())
-
-
-
-# print('Mean of numerical columns:\n', DS1.mean())
-
-# print(DS1.mode(dropna=False))
 
