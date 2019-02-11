@@ -3,8 +3,8 @@ import pandas as pd
 # These are the files we will be reading
 data_sets = ['cars.csv', 'head.injury.csv']
 
+# Loops through each csv file in 'data_sets'
 for data in range(len(data_sets)):
-
     # Reads the CSV files with pandas
     DS1 = pd.read_csv(data_sets[data])
 
