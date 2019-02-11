@@ -2,6 +2,12 @@ import pandas as pd
 import matplotlib as plt
 import numpy as np
 
+# TODO: Test categorical data, specifically the mode
+# TODO: add test for useless data, Timestamps
+# TODO: histograms per each column: numerical data
+# TODO: bar plot for categorical columns
+
+
 # These are the files we will be reading
 data_sets = ['cars.csv', 'head.injury.csv']
 
@@ -31,6 +37,8 @@ for data in range(len(data_sets)):
 
             # TODO mode may not work correctly, needs more testing on categorical data
             print('Column', i, 'mean is:', DS1_Sliced.mode())
+
+            # TODO: Add barplot here
             print()                                 # Blank line for formatting
 
         # Else the data is numerical
@@ -52,6 +60,9 @@ for data in range(len(data_sets)):
                 print('Column', i, 'mean is:', DS1_Sliced.mean())
                 print('Max value: ', DS1_Sliced.max())
                 print('Min value: ', DS1_Sliced.min())
+
+                # TODO: add histogram here
+
                 print()                                 # Blank line for formatting
             # Else the column is indexes
             else:
@@ -69,7 +80,3 @@ for data in range(len(data_sets)):
         print("The data in", data_sets[data], "both numerical and categorical")
         print()
 
-    #test = DS1.plot.hist(bins=10)
-    #print(test)
-    #histogram.plot()
-    #histogram = DS1.hist(bins=3)
