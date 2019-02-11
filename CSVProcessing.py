@@ -22,7 +22,7 @@ numerical = False
 for i in range(len(DS1.values[1])):
     # If the data is categorical
     if isinstance(DS1.values[1][i], str):
-        print('Column', i, 'is categorical')    
+        print('Column', i, 'is categorical')
         categorical = True                      # There is categorical data, sets Boolean to True
         DS1_Sliced = DS1.iloc[:, i:i + 1]       # Slices the data into a 1 wide column containing all of the rows
         print('Column', i, 'mean is:', DS1_Sliced.mode())
