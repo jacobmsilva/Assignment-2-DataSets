@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib as plt
+import numpy as np
 
 # These are the files we will be reading
 data_sets = ['cars.csv', 'head.injury.csv']
@@ -19,6 +21,8 @@ for data in range(len(data_sets)):
 
     # Loops through the first row to determine what kind of data we are looking at
     for i in range(len(DS1.values[1])):
+        is_useless = False                          # Boolean to determine if a column contains useless information
+
         # If the data is categorical
         if isinstance(DS1.values[1][i], str):
             print('Column', i, 'is categorical')
@@ -28,15 +32,31 @@ for data in range(len(data_sets)):
             # TODO mode may not work correctly, needs more testing on categorical data
             print('Column', i, 'mean is:', DS1_Sliced.mode())
             print()                                 # Blank line for formatting
+
         # Else the data is numerical
         else:
-            print('Column', i, 'is numerical')
-            numerical = True                        # There is numerical data, sets the Boolean to True
-            DS1_Sliced = DS1.iloc[:, i:i + 1]       # Slices the data into a 1 wide column containing all of the rows
-            print('Column', i, 'mean is:', DS1_Sliced.mean())
-            print('Max value: ', DS1_Sliced.max())
-            print('Min value: ', DS1_Sliced.min())
-            print()                                 # Blank line for formatting
+            DS1_Sliced = DS1.iloc[:, i:i + 1]  # Slices the data into a 1 wide column containing all of the rows
+
+            # Loops through each element in the column:
+            #   Checks to see if the column is just the index for the row
+            for index, row in DS1_Sliced.iterrows():
+                if row[0] == index+1:
+                    is_useless = True
+                else:
+                    is_useless = False
+
+            # If the column is not indexes, carry on with processing the data
+            if not is_useless:
+                print('Column', i, 'is numerical')
+                numerical = True                        # There is numerical data, sets the Boolean to True
+                print('Column', i, 'mean is:', DS1_Sliced.mean())
+                print('Max value: ', DS1_Sliced.max())
+                print('Min value: ', DS1_Sliced.min())
+                print()                                 # Blank line for formatting
+            # Else the column is indexes
+            else:
+                print('Column', i,  'are indexes of rows, and therefore useless')
+                print()
 
     # If statements to check if the values are numerical, categorical or both
     if categorical and not numerical:
@@ -49,4 +69,7 @@ for data in range(len(data_sets)):
         print("The data in", data_sets[data], "both numerical and categorical")
         print()
 
-
+    #test = DS1.plot.hist(bins=10)
+    #print(test)
+    #histogram.plot()
+    #histogram = DS1.hist(bins=3)
