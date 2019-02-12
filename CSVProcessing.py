@@ -9,7 +9,8 @@ import numpy as np
 
 
 # These are the files we will be reading
-data_sets = ['cars.csv', 'head.injury.csv']
+data_sets = ['progression.csv'] #['cars.csv', 'head.injury.csv',
+
 
 # Loops through each csv file in 'data_sets'
 for data in range(len(data_sets)):
@@ -35,8 +36,13 @@ for data in range(len(data_sets)):
             categorical = True                      # There is categorical data, sets Boolean to True
             DS1_Sliced = DS1.iloc[:, i:i + 1]       # Slices the data into a 1 wide column containing all of the rows
 
+            print('time to print')
+            #print(DS1_Sliced)
             # TODO mode may not work correctly, needs more testing on categorical data
-            print('Column', i, 'mean is:', DS1_Sliced.mode())
+            print('Column', i, 'mode is:', DS1_Sliced.mode())
+
+            #DS1.hist(bins=3)
+            DS1.plot.hist(bins=12, alpha=0.5)
 
             # TODO: Add barplot here
             print()                                 # Blank line for formatting
