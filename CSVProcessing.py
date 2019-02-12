@@ -70,6 +70,7 @@ for data in range(len(data_sets)):
                 # TODO: add histogram here
 
                 print()                                 # Blank line for formatting
+                DS1_Sliced.hist()
             # Else the column is indexes
             else:
                 print('Column', i,  'are indexes of rows, and therefore useless')
